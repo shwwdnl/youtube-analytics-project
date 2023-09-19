@@ -22,7 +22,33 @@ class Channel:
         self.subscribers = int(self.channel['items'][0]['statistics']['subscriberCount'])
         self.video_count = int(self.channel['items'][0]['statistics']['videoCount'])
         self.views = int(self.channel['items'][0]['statistics']['viewCount'])
-        self.url = 'https://www.youtube.com/', 'channel/' + self.channel_id
+        self.url = 'https://www.youtube.com/channel/' + self.channel_id
+
+    def __str__(self):
+        return f"{self.title}({self.url})"
+
+    def __add__(self, other):
+        return self.subscribers + other.subscribers
+
+    def __sub__(self, other) -> int:
+        return self.subscribers - other.subscribers
+
+    def __gt__(self, other):
+        return self.subscribers > other.subscribers
+
+    def __ge__(self, other):
+        return self.subscribers >= other.subscribers
+
+    def __lt__(self, other):
+        return self.subscribers < other.subscribers
+
+    def __le__(self, other):
+        return self.subscribers <= other.subscribers
+
+    def __eq__(self, other):
+        return self.subscribers == other.subscribers
+
+
 
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
